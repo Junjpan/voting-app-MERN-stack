@@ -5,6 +5,7 @@ class Panel extends Component {
         return (
             <div className="panel">
                 <h2>This is Panel</h2>
+                <p className="subMessage">Share Your Opinions, Vote Now!</p>
             </div>
         )
     }

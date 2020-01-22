@@ -10,9 +10,9 @@
 }
 
 .logintitle{
-    -ms-transform: rotate(-20deg); /*IE9*/
-    -webkit-transform: rotate(-20deg); /*Safari 3-8 */
-    transform:rotate(-20deg) translate(-30px,-80px);; 
+    -ms-transform: rotate(-20deg) translate(-30px,-80px); /*IE9*/
+    -webkit-transform: rotate(-20deg) translate(-30px,-80px); /*Safari 3-8 */
+    transform:rotate(-20deg) translate(-30px,-80px);
     background-color:rgb(203, 233, 252);
     width:300px;
     text-align:left;
