@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=Lato&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Righteous&display=swap");
 @import url('./components/login/login.css');
 @import url('./components/panel/panel.css');
 
@@ -9,6 +10,26 @@
 
 .title{
   text-align: center;
-  font-family: 'Open Sans Condensed', sans-serif;
+  font-family: 'Righteous', cursive;
 }
 
+input{
+  height:30px;
+  width:60%;
+}
+
+label{
+  float:left;
+  font-weight:bold;
+}
+
+button{
+  height:30px;
+  width:100px;
+  font-weight: bold;
+}
+
+button:hover{
+  background-color: rgb(172, 170, 170) !important;
+  color:white;
+}
