@@ -40,6 +40,7 @@ class App extends Component{
     return (
       <Router>      
             <h1 className="title">Universal Voting Board</h1> 
+            <img src="https://kidstaskit.herokuapp.com/static/media/JunEBug.f67dd03a.png" className="logo" alt="logo"></img>
             <div className="message" style={msgStyle}>
     <p style={{color:"red"}}>{this.state.message}</p> 
             <button style={{width:"30px",marginTop:"10px",marginLeft:"20px"}} onClick={()=>{this.setState({msgClosed:true})}}>X</button>
