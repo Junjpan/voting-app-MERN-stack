@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
 import {BrowserRouter as Router, Route, Redirect}  from 'react-router-dom';
+import axios from 'axios';
 import Login from './components/login/Login';
 import Panel from './components/panel/Panel';
 import Register from './components/register/Register';
 
 
+//set up a gobal axios defaults
+axios.defaults.baseURL='http://localhost:5000';
 
 class App extends Component{
 
@@ -17,8 +20,7 @@ class App extends Component{
   }
 
   //if you are not using arrow function, you have to bind this when you are using this function in the render.
-  getStatus=(username)=>{
- 
+  getStatus=(username)=>{ 
    if(username!==''){
 
      this.setState({user:username,
@@ -26,6 +28,11 @@ class App extends Component{
                    message:`${username}, you are sucessully logged in!`,
                    msgClosed:false})
    }
+  }
+
+  message=(msg)=>{
+    this.setState({message:msg,
+                  msgClosed:false })
   }
 
   render(){
@@ -43,7 +50,7 @@ class App extends Component{
               <Panel />
             </div>)
             }} />
-            <Route path="/register" exact component={Register}/>
+            <Route path="/register" exact render={()=>{return <Register message={this.message} />}} />
       </Router>
     );
   }

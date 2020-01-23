@@ -19,10 +19,10 @@ function Login(props){
             <div>
                 <form onSubmit={submit}>
                 <label htmlFor="username">Username:</label><br/>
-                <input type="text" id="username" name="username" onChange={e=>{setUser(e.target.value)}}></input><br/><br/>
+                <input type="text" id="username" name="username" required onChange={e=>{setUser(e.target.value)}}></input><br/><br/>
                 <label htmlFor="password">Password:</label><br/>
-                <input type="password" id="password" name="password" onChange={e=>{setPassword(e.target.value)}}></input> <br/> <br/>              
-                <button type="submit" style={{background:"rgb(203, 233, 252)"}}>LOGIN</button>
+                <input type="password" id="password" name="password" onChange={e=>{setPassword(e.target.value) }} required></input> <br/> <br/>              
+                <button type="submit" style={{background:"rgb(203, 233, 252)"}}>LOGIN</button>required
                 </form>
             </div>
             <hr/>
