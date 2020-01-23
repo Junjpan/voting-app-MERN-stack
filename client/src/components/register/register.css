@@ -1,0 +1,42 @@
+.register{
+        background-color:black;
+        width:25%;
+        height:100%;
+        padding:40px;
+        text-align: center;
+        margin: 50px auto auto auto;
+        background:#339b9b;
+        box-shadow: 5px 10px 8px  rgb(80, 79, 79);
+}
+
+
+.registertitle{
+    -ms-transform: rotate(-20deg) translate(-30px,-80px); /*IE9*/
+    -webkit-transform: rotate(-20deg) translate(-30px,-80px); /*Safari 3-8 */
+    transform:rotate(-20deg) translate(-30px,-80px);
+    background-color:rgb(203, 233, 252);
+    width:300px;
+    text-align:left;
+    padding:0px 20px;
+    color:black;
+    font-family:'Open Sans Condensed', sans-serif;
+  }
+
+  @media only screen and (max-width:1000px){
+    .registertitle{
+        transform:none;
+        text-align:center;
+        width:200px;
+        padding:0px;
+        margin:auto;
+        margin-bottom: 10px;
+        background:none;
+    }
+
+    .register{
+        width:90%;
+        padding:20px;
+    }
+
+
+}
