@@ -1,57 +1,79 @@
-import React, { Component } from 'react';
+import React, { Component} from 'react';
 import './App.css';
-import {BrowserRouter as Router, Route, Redirect}  from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
 import axios from 'axios';
 import Login from './components/login/Login';
 import Panel from './components/panel/Panel';
 import Register from './components/register/Register';
 
 
+
 //set up a gobal axios defaults
-axios.defaults.baseURL='http://localhost:5000';
+axios.defaults.baseURL = 'http://localhost:5000';
 
-class App extends Component{
+class App extends Component {
 
-  state={
-    user:'',
-    loginStatus:false,
-    msgClosed:true,
-    message:""
+  state = {
+    user: '',
+    loginStatus: false,
+    msgClosed: true,
+    message: ""
   }
 
+  //check if the localstorage has user name item, if it is, the page will be still in the login mode
+  componentDidMount(){
+    if (localStorage.getItem('user')){
+      this.setState({loginStatus:true})
+    }
+  }
   //if you are not using arrow function, you have to bind this when you are using this function in the render.
-  getStatus=(username)=>{ 
-   if(username!==''){
-
-     this.setState({user:username,
-                    loginStatus:true,
-                   message:`${username}, you are sucessully logged in!`,
-                   msgClosed:false})
-   }
+  getStatus = (username) => {
+    if (username !== ''||username!=="undefined"||username!==null) {
+      this.setState({
+        user: username,
+        loginStatus: true,
+        message: `${username}, you are sucessully logged in! Sending you to your user page...`,
+        msgClosed: false
+      })
+    }
   }
 
-  message=(msg)=>{
-    this.setState({message:msg,
-                  msgClosed:false })
+  //receive/update message
+  message = (msg, status) => {
+    if (status === "undefined") {
+      this.setState({
+        message: msg,
+        msgClosed: false
+      })
+    } else {
+      this.setState({
+        message: msg,
+        msgClosed: status
+      })
+    }
+//when click the back button, message will not be showing.
   }
 
-  render(){
-    const msgStyle=this.state.msgClosed? {visibility:"hidden"} :{display:"flex"}
+  render() {
+    const msgStyle = this.state.msgClosed ? { visibility: "hidden" } : { display: "flex" }
     return (
-      <Router>      
-            <h1 className="title">Universal Voting Board</h1> 
-            <img src="https://kidstaskit.herokuapp.com/static/media/JunEBug.f67dd03a.png" className="logo" alt="logo"></img>
-            <div className="message" style={msgStyle}>
-    <p style={{color:"red"}}>{this.state.message}</p> 
-            <button style={{width:"30px",marginTop:"10px",marginLeft:"20px"}} onClick={()=>{this.setState({msgClosed:true})}}>X</button>
-            </div>
-            <Route path="/" exact render={()=>{
-              return (<div className="App"  style={{display:"flex",flexWrap:"wrap"}}>
-              <Login status={this.getStatus}/>
+      <Router>
+        <h1 className="title">Universal Voting Board</h1>
+        <img src="https://kidstaskit.herokuapp.com/static/media/JunEBug.f67dd03a.png" className="logo" alt="logo"></img>
+        <div className="message" style={msgStyle}>
+          <p style={{ color: "red" }}>{this.state.message}</p>
+          <button style={{ width: "30px", marginTop: "10px", marginLeft: "20px" }} onClick={() => { this.setState({ msgClosed: true }) }}>X</button>
+        </div>
+        <Switch>
+          <Route path="/" exact render={() => {
+            return (<div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
+            {this.state.loginStatus ? null :<Login status={this.getStatus} message={this.message}/>}
               <Panel />
             </div>)
-            }} />
-            <Route path="/register" exact render={()=>{return <Register message={this.message} />}} />
+          }} />
+          <Route path="/register" exact render={(props) => { return <Register message={this.message} {...props} /> }} />
+          {/* In order to pass the prop object(props.match/props.history etc) to the child component, you have to use props as parameters and put {...props} in the compoent render,just like the above*/}
+        </Switch>
       </Router>
     );
   }

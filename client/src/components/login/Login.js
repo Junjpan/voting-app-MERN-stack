@@ -1,5 +1,6 @@
 import React ,{useState} from 'react';
 import {Link} from 'react-router-dom';
+import axios from 'axios';
 
 function Login(props){
     
@@ -8,9 +9,14 @@ function Login(props){
 
     function submit(e){
         e.preventDefault();
-        console.log(user,password);
-        // todo: if password is correct, send username,else throw err
-        props.status(user);
+        axios.get('/api/user/login',{params:{username:user,password:password}})
+            .then(res=>{
+                localStorage.setItem('user',user);
+                props.status(user);
+            })
+            .catch(err=>{
+                props.message(err.response.data)
+            })
     }
 
     return (
