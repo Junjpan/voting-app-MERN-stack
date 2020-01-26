@@ -11,8 +11,11 @@ function Login(props){
         e.preventDefault();
         axios.get('/api/user/login',{params:{username:user,password:password}})
             .then(res=>{
-                localStorage.setItem('user',user);
+                localStorage.setItem("user",user);
+                localStorage.setItem("url",res.data.url);
                 props.status(user);
+                //if you want to store an object,you can use localStorage.setItem('objname',JSON.stringify(obj));
+                //To retrieve the object, you use JSON.parse(localStorage.getItem('objname'))
             })
             .catch(err=>{
                 props.message(err.response.data)
