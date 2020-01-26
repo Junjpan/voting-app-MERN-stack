@@ -42,8 +42,7 @@ router.get('/login',(req,res)=>{
         }else{
             bcrypt.compare(password,user.password,(err,isMatch)=>{
                 if(isMatch){
-                    res.send('success')
-
+                    res.status(200).json({url:user.imgurl})
                 }else{
                     res.status(400).send("Sorry,your passowrd is incorrect.")
                 }
@@ -52,5 +51,18 @@ router.get('/login',(req,res)=>{
     })
 })
 
+
+router.get('/:username',(req,res)=>{
+    const {username}=req.params;
+    console.log(username)
+    User.findOne({username},(err,user)=>{
+        if (err){throw err}
+        if(user!==null){
+         res.send('success')
+        }else{
+            res.status(404)
+        }
+    })
+})
 
 module.exports = router;

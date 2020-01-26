@@ -1,10 +1,11 @@
 import React, { Component} from 'react';
 import './App.css';
-import { BrowserRouter as Router, Route, Redirect, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect, Switch} from 'react-router-dom';
 import axios from 'axios';
 import Login from './components/login/Login';
 import Panel from './components/panel/Panel';
 import Register from './components/register/Register';
+import Profile from './components/Profile/profile';
 
 
 
@@ -20,26 +21,48 @@ class App extends Component {
     message: ""
   }
 
-  //check if the localstorage has user name item, if it is, the page will be still in the login mode
+  //check if the localstorage has user name item, if it is, the page will be still in the login mode even user is accidently close the website.
   componentDidMount(){
+    const username=localStorage.getItem('user');
+    //prevent people change localstorage username,double check with server,make sure has such a user.
     if (localStorage.getItem('user')){
-      this.setState({loginStatus:true})
-    }
+      axios.get(`/api/user/${username}`)
+      .then(res=>{
+        this.setState({loginStatus:true,
+          user:username })
+      })
+      .catch(err=>{
+        localStorage.clear();
+      })
+
+     
+}
+      
   }
+
+
   //if you are not using arrow function, you have to bind this when you are using this function in the render.
   getStatus = (username) => {
-    if (username !== ''||username!=="undefined"||username!==null) {
+
+    if (username!=="undefined"&&username!==null&&username !=='') {
       this.setState({
         user: username,
         loginStatus: true,
-        message: `${username}, you are sucessully logged in! Sending you to your user page...`,
+        message: `${username}, you are sucessully logged in! `,
         msgClosed: false
+      })
+    }else{
+      this.setState({
+        user: '',
+        loginStatus: false,
+        message: `You are sucessully logged out! `
       })
     }
   }
 
   //receive/update message
   message = (msg, status) => {
+    // for the case when you use click back button
     if (status === "undefined") {
       this.setState({
         message: msg,
@@ -67,7 +90,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact render={() => {
             return (<div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
-            {this.state.loginStatus ? null :<Login status={this.getStatus} message={this.message}/>}
+            {this.state.loginStatus ? <Profile  status={this.getStatus}/> :<Login status={this.getStatus} message={this.message}/>}
               <Panel />
             </div>)
           }} />
