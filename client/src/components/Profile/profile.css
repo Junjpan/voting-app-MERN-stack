@@ -29,9 +29,9 @@
       border:5px solid #123333;
   }
 
-  .profileBTN{
-      width:120px;
-      margin-left: 20px;
+  .profileBTN{    
+      width:110px;
+      margin:auto;
       background-color: gray;
      color:#123333;
      margin-bottom: 10px;
@@ -57,9 +57,9 @@
 
   @media only screen and (min-width:1000px) and (max-width:1350px){
     .profileimage{
-     width:90px;
-     height:90px;   
- }
+        width:90px;
+        height:90px;   
+    }
  .profile{
     width:30%;
     padding:20px;
@@ -72,7 +72,6 @@
   }
   
   @media only screen and (max-width:350px){
-   .profileBTN{ margin-left:5px;}
    .profileimage{
     width:90px;
     height:90px;

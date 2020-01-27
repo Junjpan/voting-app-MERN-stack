@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs');
 
 //register to be a memeber
 router.post('/register', (req, res) => {
-    console.log(req.body);//make sure to use bodyParser
+    //console.log(req.body);//make sure to use bodyParser
     const { username, password } = req.body;
     const query = { username: username.toLowerCase() }
 
@@ -54,7 +54,7 @@ router.get('/login',(req,res)=>{
 
 router.get('/:username',(req,res)=>{
     const {username}=req.params;
-    console.log(username)
+    //console.log(username)
     User.findOne({username},(err,user)=>{
         if (err){throw err}
         if(user!==null){
@@ -63,6 +63,23 @@ router.get('/:username',(req,res)=>{
             res.status(404)
         }
     })
+})
+
+router.put('/:username/url',(req,res)=>{
+    const {img_url}=req.body;
+    const {username}=req.params;
+   // console.log(img_url,username);
+   User.findOne({username},(err,user)=>{
+       if(err){throw err}
+       if(user!==null){
+           user.imgurl=img_url;
+           user.save();
+           res.send('success');
+       }else{
+          res.status(404).send('Sorry, update is failed.')
+       }
+   })
+
 })
 
 module.exports = router;
