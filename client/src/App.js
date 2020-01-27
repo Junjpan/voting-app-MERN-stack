@@ -90,7 +90,7 @@ class App extends Component {
         <Switch>
           <Route path="/" exact render={() => {
             return (<div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
-            {this.state.loginStatus ? <Profile  status={this.getStatus}/> :<Login status={this.getStatus} message={this.message}/>}
+            {this.state.loginStatus ? <Profile  status={this.getStatus} message={this.message}/> :<Login status={this.getStatus} message={this.message}/>}
               <Panel />
             </div>)
           }} />
