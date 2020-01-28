@@ -2,8 +2,9 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Righteous&display=swap");
 @import url('./components/login/login.css');
 @import url('./components/panel/panel.css');
-@import url('./components/register/register.css');
+
 @import url('./components/Profile/profile.css');
+@import url('./components//NewPoll/newpoll.css');
 
 .App {
   margin: 0 auto;
@@ -45,4 +46,12 @@ button:hover{
   display: flex;
   padding:0px 20px;
   margin-bottom: 10px;
+}
+
+.LogoutBTN{
+  float:right;
+  margin-Right:10%;
+  background:#339b9b;
+  color:white;
+  
 }

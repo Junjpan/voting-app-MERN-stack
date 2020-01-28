@@ -1,9 +1,12 @@
 .panel{
     background-color: white;
+    background-image: url("https://images.unsplash.com/photo-1580049031750-e366a945a8c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80");
+    background-size:100%;
+    background-position-y: center;
     width:55%;
     margin: 0 auto;
     padding: 40px;
-    border-left: #123333 50px solid;
+    border-left: #339b9b 50px solid;
     box-shadow: 5px 10px 8px  rgb(80, 79, 79);
     position:relative;
      }
@@ -12,7 +15,7 @@
     position: absolute;
     bottom:0px;
     right:10px;
-    background-color:#123333;
+    background-color:#339b9b;
     text-align:left;
     color:white;
     padding:0px 40px;

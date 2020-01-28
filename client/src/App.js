@@ -6,6 +6,7 @@ import Login from './components/login/Login';
 import Panel from './components/panel/Panel';
 import Register from './components/register/Register';
 import Profile from './components/Profile/profile';
+import NewPoll from './components/NewPoll/Newpoll';
 
 
 
@@ -77,11 +78,16 @@ class App extends Component {
 //when click the back button, message will not be showing.
   }
 
+  signout=()=>{
+    this.setState({loginStatus:false});
+    localStorage.clear();
+  }
   render() {
     const msgStyle = this.state.msgClosed ? { visibility: "hidden" } : { display: "flex" }
     return (
       <Router>
-        <h1 className="title">Universal Voting Board</h1>
+        <h1 className="title">Universal Voting Board</h1> 
+        {this.state.loginStatus ? <button className="LogoutBTN" onClick={this.signout}>Sign Out</button>:null}
         <img src="https://kidstaskit.herokuapp.com/static/media/JunEBug.f67dd03a.png" className="logo" alt="logo"></img>
         <div className="message" style={msgStyle}>
           <p style={{ color: "red" }}>{this.state.message}</p>
@@ -95,6 +101,7 @@ class App extends Component {
             </div>)
           }} />
           <Route path="/register" exact render={(props) => { return <Register message={this.message} {...props} /> }} />
+          <Route path="/new/:username" exact render={(props) => {return <NewPoll />}} />
           {/* In order to pass the prop object(props.match/props.history etc) to the child component, you have to use props as parameters and put {...props} in the compoent render,just like the above*/}
         </Switch>
       </Router>

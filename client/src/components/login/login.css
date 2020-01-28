@@ -7,6 +7,8 @@
     margin: 0 auto;
     background:#339b9b;
     box-shadow: 5px 10px 8px  rgb(80, 79, 79);
+    border-right: 5px double white;
+    border-bottom: 5px double white;
 }
 
 .logintitle{
@@ -19,6 +21,12 @@
     padding:0px 20px;
     color:black;
     font-family:'Open Sans Condensed', sans-serif;
+  }
+
+  hr{
+      height:2px;
+      border:none;
+      background:#123333;
   }
 
   @media only screen and (max-width:1000px){
