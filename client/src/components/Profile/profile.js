@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import ChangeProfile from './ChangeProfile';
 import axios from 'axios';
 import {Spring} from 'react-spring/renderprops';
@@ -39,6 +40,7 @@ function Profile(props) {
         setStatus(false);
     }
 
+
     function profile(){
         return (
             <Spring from={{opacity:0,background:"black"}} to={{opacity:1,background:"#339b9b"}} config={{delay:200,duration:2000}}>{
@@ -48,16 +50,15 @@ function Profile(props) {
                  <img className="profileimage" src={url} alt="profile" />
                  <hr />
                  <div style={{ display: "flex", flexWrap: "wrap" }}>
-                     <button className="profileBTN" onClick={()=>{setStatus(true)}}>Change Profile</button>
-                     <button className="profileBTN">Start a New Poll</button>
-                     <button className="profileBTN">View My Polls</button>
-                     <button className="profileBTN">Main Page</button>
+                     <Link to ="/" className="profileBTN"><button  onClick={()=>{setStatus(true)}}>Change Profile</button></Link>
+                     <Link to="/" className="profileBTN"><button>Main Page</button></Link>
+                     <Link to="/" className="profileBTN"><button >View My Polls</button></Link>           
+                     <Link to={`/new/${user}`} className="profileBTN"><button  >Start a New Poll</button></Link>
                      <button className="profileBTN" style={{ color: "red" }} onClick={signout}>Sign Out</button>
                  </div>
              </div>
          </div>)
-            }
-            
+            }      
             </Spring>
         )
     }
