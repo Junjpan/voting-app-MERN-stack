@@ -2,9 +2,10 @@
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Righteous&display=swap");
 @import url('./components/login/login.css');
 @import url('./components/panel/panel.css');
-
+@import url('./components/register/register.css');
 @import url('./components/Profile/profile.css');
-@import url('./components//NewPoll/newpoll.css');
+@import url('./components/NewPoll/newpoll.css');
+@import url('./components/options/options.css');
 
 .App {
   margin: 0 auto;
