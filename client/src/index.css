@@ -1,6 +1,6 @@
 
 @import url("https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300&display=swap");
-@import url('./components/register/register.css');
+
 *{ 
     font-family: 'Open Sans Condensed', sans-serif;
     box-sizing: border-box;

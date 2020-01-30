@@ -1,0 +1,15 @@
+.option{
+    color:#123333;
+    margin:0px 15px;
+    font-size:20px
+}
+
+.deleteBTN{
+    width:25px;
+    height:25px;
+    color:red;
+    border-radius: 50%;
+    margin-left:10px;
+    background:black;
+    border: none;
+}

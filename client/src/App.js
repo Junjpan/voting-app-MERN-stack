@@ -79,8 +79,15 @@ class App extends Component {
   }
 
   signout=()=>{
-    this.setState({loginStatus:false});
-    localStorage.clear();
+
+    window.location.href="/"  
+    
+    this.setState({loginStatus:false,
+                  message:"You are sucessully logged out! ",
+                  msgClosed: false});
+                  localStorage.clear();                         
+    
+    
   }
   render() {
     const msgStyle = this.state.msgClosed ? { visibility: "hidden" } : { display: "flex" }
@@ -101,8 +108,8 @@ class App extends Component {
             </div>)
           }} />
           <Route path="/register" exact render={(props) => { return <Register message={this.message} {...props} /> }} />
-          <Route path="/new/:username" exact render={(props) => {return <NewPoll />}} />
-          {/* In order to pass the prop object(props.match/props.history etc) to the child component, you have to use props as parameters and put {...props} in the compoent render,just like the above*/}
+          {this.state.loginStatus?<Route path="/new/:username" exact render={(props) => {return <NewPoll {...props} />}} />:<Redirect to="/" />}
+         {/* In order to pass the prop object(props.match/props.history etc) to the child component, you have to use props as parameters and put {...props} in the compoent render,just like the above*/}
         </Switch>
       </Router>
     );
