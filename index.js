@@ -1,12 +1,12 @@
 const express=require('express');
 const app=express();
 const path=require('path');
-const mongoose=require('mongoose');
 const port=process.env.PORT||5000;
-const userRouter=require('./routes/userRouter');
 const cors=require('cors');
 const bodyParser=require('body-parser');
 const conn=require('./routes/connection');
+const userRouter=require('./routes/userRouter');
+const pollRouter=require('./routes/pollRouter');
 
 
 
@@ -25,6 +25,7 @@ conn.once('open',(err,db)=>{
 
 
 app.use('/api/user',userRouter);
+app.use('/api/poll',pollRouter);
 
 
 app.listen(port,()=>{
