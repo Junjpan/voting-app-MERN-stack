@@ -70,7 +70,7 @@ class Newpoll extends Component {
                     <div><img src={this.state.url} alt="profile" className="profile_new" /></div>
                     <div className="profileFrame">
                         <h3 >{this.state.username}</h3>
-                        <button className="profileBTN" onClick={() => { this.props.history.go(-1) }}>Back</button>
+                        <button className="profileBTN" onClick={() => { this.props.history.go(-1);this.props.message('',true) }}>Back</button>
                     </div>
                 </div>
                 <div style={{ margin: "auto" }} >

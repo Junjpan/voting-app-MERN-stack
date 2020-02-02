@@ -6,6 +6,7 @@
 @import url('./components/Profile/profile.css');
 @import url('./components/NewPoll/newpoll.css');
 @import url('./components/options/options.css');
+@import url('./components/PrivatePanel/privatepanel.css');
 
 .App {
   margin: 0 auto;
