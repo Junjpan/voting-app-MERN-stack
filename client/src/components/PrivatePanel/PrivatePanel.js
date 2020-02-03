@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import {Link} from 'react-router-dom';
 import axios from 'axios';
 import PollOption from './PollOption';
+
 
 function PrivatePanel(props) {
     const [myPolls, setMyPolls] = useState([]);
@@ -40,6 +42,7 @@ function PrivatePanel(props) {
                 {myPolls.map((poll, index) => {
                     return (<PollOption key={index} poll={poll} index={index} message={message} />)
                 })}
+        <div className="polloption"><Link to={`/new/${user}`} style={{textDecoration:"none"}}><p style={{fontSize:"70px",color:"#339b9b",textAlign:"center"}}>+</p></Link></div>
             </div>
         </div>
     )
