@@ -1,8 +1,56 @@
+/*flip toggle-start*/
+
+.flip-container{
+    flex: 0 0 420px;
+    text-align: center;  
+    overflow-y:auto;
+    height:300px;
+    border-top-right-radius: 2%;
+    border-bottom-right-radius: 2%;
+    border-right: 1px solid lightgray;
+    position:relative;
+    perspective:1000px;
+   
+}   
+
+.flip-container:hover .flipper{
+    transform:rotateY(180deg);
+}
+
+.front,.back{
+    padding-top: 20px;
+    width:400px;
+    height:260px;
+    backface-visibility: hidden;
+    position: absolute;
+    top:0;
+    left:0;
+    
+}
+
+.front{
+    z-index:2;
+    transform:rotateY(0deg);
+}
+
+.back{
+    transform:rotateY(180deg);
+}
+
+.flipper{
+    transition:1s;
+    transform-style: preserve-3d;
+    position:relative;
+}
+
+/*flip toggle-end*/
+
+
 .panel{
-    background-color: white;
     background-image: url("https://images.unsplash.com/photo-1580049031750-e366a945a8c2?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80");
     background-size:100%;
     background-position-y: center;
+    background-blend-mode: lighten;
     width:55%;
     margin: 0 auto;
     padding: 40px;
@@ -10,6 +58,7 @@
     box-shadow: 5px 10px 8px  rgb(80, 79, 79);
     position:relative;
     max-height: 450px;
+    position: relative;
      }
 
 .subMessage{
@@ -22,14 +71,53 @@
     padding:0px 40px;
     font-family:'Open Sans Condensed', sans-serif;
 }
+
+
+/*loading ball*/
+.loading_outer{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    animation: rotation 2s infinite;
+    background:#339b9b;
+    margin:auto;
+    position:relative;
+}
+.loading_inner{
+    width:2px;
+    height:2px;
+    border-radius: 50%;
+    animation: rotation 4s infinite;
+    background:white;
+    position:absolute;
+}
+
+@keyframes rotation{
+
+    100%{
+        transform:rotate(360deg);
+    }
+
+}
 @media only screen and (max-width:1000px){
     .panel{
         width:90%;
         padding:20px;
-        margin-bottom: 20px;
+        margin-bottom: 30px;
     }
-
     .subMessage{
-        padding:0px;
+        display:none
     }
 }    
+
+@media only screen and (max-width:400px){
+    .flip-container{
+        flex: 0 0 220px;
+    }
+    .front, .back {width:90%;}
+    .panel{
+        padding-bottom:20px;
+        border:none;
+        margin-bottom: 30px;
+    }
+}

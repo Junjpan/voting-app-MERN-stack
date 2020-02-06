@@ -111,7 +111,7 @@ class App extends Component {
           <Route path="/" exact render={() => {
             return (<div className="App" style={{ display: "flex", flexWrap: "wrap" }}>
               {this.state.loginStatus ? <Profile status={this.getStatus} message={this.message} setPrivateView={this.setPrivateView} /> : <Login status={this.getStatus} message={this.message} />}
-              {this.state.privateView? <PrivatePanel user={this.state.user} />:<Panel />}
+              {this.state.privateView? <PrivatePanel user={this.state.user} />:<Panel message={this.message}/>}
             </div>)
           }} />
           <Route path="/register" exact render={(props) => { return <Register message={this.message} {...props} /> }} />
