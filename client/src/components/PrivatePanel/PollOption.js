@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { Spring } from 'react-spring/renderprops';
+import Chart from './Chart.js';
 
 function PollOption(props) {
     const poll = props.poll;
@@ -8,7 +9,7 @@ function PollOption(props) {
     const [newOption, setNewOption]=useState('');
 
     function deletePoll(id) {
-        console.log(id)
+        //console.log(id)
         axios.delete('/api/poll/' + id)
             .then(res => props.message(res.data, true, props.index))
             .catch(err => props.message(err.response.data, false))
@@ -42,6 +43,8 @@ function PollOption(props) {
                     <p style={{ color: "red" }}>{option.vote}</p>
                 </div>)
             })}</div>
+            <hr/>
+            <Chart data={poll} />
             {addstatus ? (<Spring from={{opacity:0}} to={{opacity:1}} config={{delay:500,duration:1000}}>{(props)=>(<div style={props} className="addOption">
                 <input type="text" name="addoption" id="addoption" placeholder="Add a new option..." onChange={(e)=>{setNewOption(e.target.value)}} /><br/>
                 <button onClick={addOption}>Add</button>
