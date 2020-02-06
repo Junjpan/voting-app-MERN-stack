@@ -108,5 +108,37 @@ router.post("/options/add", (req, res) => {
     })
 })
 
+router.get('/public/all',(req,res)=>{
+    Poll.find({})
+        .sort({date:-1}) 
+        .populate({path:"options",model:Option})
+        .then((polls) => {
+            if (polls.length == 0) {
+                res.status(404).send("We don't have any polls yet.")
+            } else {
+                res.send(polls)
+            }
+
+        })
+        .catch(err => { throw err })
+})
+
+router.put('/vote/:optionId',(req,res)=>{
+    const {optionId}=req.params;
+    //console.log(optionId)
+    Option.findById(optionId,(err,option)=>{
+        if(err){throw err}
+        else{
+            option.vote+=1;
+            option.save((err)=>{
+                if(err){throw err}
+               else{ res.send('success')}
+            })
+        }
+        
+    })
+    
+})
+
 module.exports = router;
 
