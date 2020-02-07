@@ -43,10 +43,6 @@ function Profile(props) {
     function setPrivate(){
         props.setPrivateView(true)
     }
-
-    function setPublic(){
-        props.setPrivateView(false)
-    }
    
 
     function profile(){
@@ -59,7 +55,7 @@ function Profile(props) {
                  <hr />
                  <div style={{ display: "flex", flexWrap: "wrap" }}>
                      <Link to ="/" className="profileBTN"><button  onClick={()=>{setStatus(true)}}>Change Profile</button></Link>
-                     <Link to="/" className="profileBTN"><button onClick={setPublic}>Main Page</button></Link>
+                     <Link to="/" className="profileBTN"><button>Main Page</button></Link>
                      <Link to="/" className="profileBTN"><button onClick={setPrivate} >View My Polls</button></Link>           
                      <Link to={`/new/${user}`} className="profileBTN"><button>Start a New Poll</button></Link>
                      <button className="profileBTN" style={{ color: "red" }} onClick={signout}>Sign Out</button>
