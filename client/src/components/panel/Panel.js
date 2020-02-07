@@ -13,7 +13,7 @@ class Panel extends Component {
     componentDidMount() {
         axios.get('/api/poll/public/all')
             .then(res => {
-                console.log(res.data);
+                //console.log(res.data);
                 this.setState({
                     polls: res.data,
                     mounted: true
@@ -39,7 +39,7 @@ class Panel extends Component {
     //receive vote id
     vote = async (id) => {
         if (id !== 'null') {
-            console.log(id)
+           // console.log(id)
             try {
                 const res = await axios.put('/api/poll/vote/' + id);
                 if(res){
