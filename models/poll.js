@@ -8,6 +8,7 @@ const PollSchema=mongoose.Schema({
         type:Date,
         default:new Date()
     },
+    ipList:[String],
     options:[{type:mongoose.Schema.Types.ObjectId,ref:"option"}]
 })
 

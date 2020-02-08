@@ -126,14 +126,31 @@ router.get('/public/all',(req,res)=>{
 router.put('/vote/:optionId',(req,res)=>{
     const {optionId}=req.params;
     //console.log(optionId)
+    const ip=req.clientIp;
+    //console.log(ip)
+
+
     Option.findById(optionId,(err,option)=>{
         if(err){throw err}
         else{
-            option.vote+=1;
-            option.save((err)=>{
-                if(err){throw err}
-               else{ res.send('success')}
+            //To find if the ip address vote the current poll
+            Poll.findById(option.pollId,(err,poll)=>{
+                let index=poll.ipList.indexOf(ip);
+                console.log(index);
+                //if Ip address is not existed
+                if(index==-1){
+                    poll.ipList.push(ip);
+                    poll.save();
+                    option.vote+=1;
+                    option.save((err)=>{
+                        if(err){throw err}
+                       else{ res.send('success')}
+                    })
+                }else{
+                    res.status(400).send('Sorry, you only can vote this poll one times.')
+                }
             })
+           
         }
         
     })
