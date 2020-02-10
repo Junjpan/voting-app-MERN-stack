@@ -39,15 +39,15 @@ class Panel extends Component {
     //receive vote id
     vote = async (id) => {
         if (id !== 'null') {
-           // console.log(id)
+            // console.log(id)
             try {
                 const res = await axios.put('/api/poll/vote/' + id);
-                if(res){
+                if (res) {
                     //console.log(res.data)
                     this.setState({ vote: !this.state.vote })// To activate the componentdidupdate
-                }               
+                }
             } catch (err) {
-               this.props.message('Sorry, you can only vote once per poll.')
+                this.props.message('Sorry, you can only vote once per poll.')
             }
         }
     }
@@ -63,7 +63,7 @@ class Panel extends Component {
                             })}
                         </div>
                     </div>
-                ) : (<div style={{ textAlign: "center" }}><h3>Loading data...</h3><div className="loading_outer"><p className="loading_inner"></p></div></div>)}
+                ) : (<div>{this.state.polls.length===0?<div>There are curenttly no polls available for vote</div>:<div style={{ textAlign: "center" }}><h3>Loading data...</h3><div className="loading_outer"><p className="loading_inner"></p></div></div>}</div>)}
                 <p className="subMessage">Share Your Opinions, Vote Now!</p>
             </div>
         )
