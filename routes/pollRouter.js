@@ -136,7 +136,7 @@ router.put('/vote/:optionId',(req,res)=>{
             //To find if the ip address vote the current poll
             Poll.findById(option.pollId,(err,poll)=>{
                 let index=poll.ipList.indexOf(ip);
-                console.log(index);
+               //console.log(index);
                 //if Ip address is not existed
                 if(index==-1){
                     poll.ipList.push(ip);
