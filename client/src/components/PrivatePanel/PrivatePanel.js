@@ -12,7 +12,7 @@ function PrivatePanel(props) {
     useEffect(() => {
         axios.get('/api/poll/' + user)
             .then(res => { 
-               console.log(res.data); 
+               //console.log(res.data); 
                 setMyPolls(res.data) })
             .catch(err => setMsg(err.response.data))
     }, [user])
