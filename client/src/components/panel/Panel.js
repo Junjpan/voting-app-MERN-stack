@@ -13,11 +13,17 @@ class Panel extends Component {
     componentDidMount() {
         axios.get('/api/poll/public/all')
             .then(res => {
-                //console.log(res.data);
-                this.setState({
-                    polls: res.data,
-                    mounted: true
-                })
+                if (res.data.length === 0) {
+                    this.setState({
+                        polls: [],
+                        mounted: true
+                    })
+                } else {
+                    this.setState({
+                        polls: res.data,
+                        mounted: true
+                    })
+                }
             })
             .catch(err => console.log(err.response.data))
     }
@@ -36,6 +42,26 @@ class Panel extends Component {
         }
     }
 
+    checkData = () => {
+        const length = this.state.polls.length;
+
+        if (length === 0) {
+            return (<div style={{ color: "red" }}>There are curenttly no polls available for vote</div>)
+        }
+        else {
+            return (
+                <div>
+                    <span style={{ textDecoration: "underline" }}>Hover over to vote</span>
+                    <div className="optionsWindow">
+                        {this.state.polls.map((poll, index) => {
+                            return (<Poll key={index} poll={poll} vote={this.vote} />)
+                        })}
+                    </div>
+                </div>
+            )
+        }
+    }
+    
     //receive vote id
     vote = async (id) => {
         if (id !== 'null') {
@@ -54,16 +80,8 @@ class Panel extends Component {
     render() {
         return (
             <div className="panel">
-                {this.state.mounted ? (
-                    <div>
-                        <span style={{ textDecoration: "underline" }}>Hover over to vote</span>
-                        <div className="optionsWindow">
-                            {this.state.polls.map((poll, index) => {
-                                return (<Poll key={index} poll={poll} vote={this.vote} />)
-                            })}
-                        </div>
-                    </div>
-                ) : (<div>{this.state.polls.length===0?<div>There are curenttly no polls available for vote</div>:<div style={{ textAlign: "center" }}><h3>Loading data...</h3><div className="loading_outer"><p className="loading_inner"></p></div></div>}</div>)}
+                {!this.state.mounted ? (<div style={{ textAlign: "center" }}><h3>Loading data...</h3><div className="loading_outer"><p className="loading_inner"></p></div></div>)
+                    : this.checkData()}
                 <p className="subMessage">Share Your Opinions, Vote Now!</p>
             </div>
         )
