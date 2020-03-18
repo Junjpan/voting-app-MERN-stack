@@ -89,7 +89,7 @@ class App extends Component {
 
     this.setState({
       loginStatus: false,
-      message: "You are sucessully logged out! ",
+      message: 'You are sucessully logged out! ',
       msgClosed: false,
       privateView:false
     });
