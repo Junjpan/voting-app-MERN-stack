@@ -85,7 +85,7 @@ class App extends Component {
   }
 
   signout = () => {
-    window.location.href = '/'
+    window.location.href = "/"
 
     this.setState({
       loginStatus: false,
