@@ -19,5 +19,6 @@ __Technology:__
 
 React,Express,MongoDB w/Mongoose,Node.js(MERN), Bcrypt,Chart.js,css
 
-__Demo__
+__Demo:__
+
 You can see the live app at https://jbvotingboard.herokuapp.com/
