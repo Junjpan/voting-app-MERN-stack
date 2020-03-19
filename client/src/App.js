@@ -15,7 +15,9 @@ import NewPoll from './components/NewPoll/Newpoll';
 import PrivatePanel from './components/PrivatePanel/PrivatePanel';
 
 //set up a gobal axios defaults
-axios.defaults.baseURL = 'http://localhost:5000';
+if (process.env.NODE_ENV === 'development') {
+  axios.defaults.baseURL = 'http://localhost:5000';
+}
 
 class App extends Component {
   state = {
